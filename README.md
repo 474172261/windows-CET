@@ -23,14 +23,14 @@ int main(void) {
 }
 ```
 if we set rsp return pointer to function `test2` before execute `ret` instruction inside `test` function.
-We will get an exception error if it enable (/CETCOMPAT)[https://docs.microsoft.com/en-us/cpp/build/reference/cetcompat?view=msvc-170]
+We will get an exception error if it enable [/CETCOMPAT](https://docs.microsoft.com/en-us/cpp/build/reference/cetcompat?view=msvc-170)
 
 We can enable it in VS2019 by:
 `Configuration Properties` > `Linker` > `Additional Options`, select `CET shadow stack compatible`
 
 # Weakness
 1. it doesn't check if we return from `test` to `main` at position after called `test3`.
-2. if exe dones't enable CETCOMPAT, though its dll enabled it, process won't enable CET. This is different from ASLR or DEP.
+2. if exe doesn't enable CETCOMPAT, though its dll enabled it, process won't enable CET. This is different from ASLR or DEP.
 
 # Enabled CET list in windows:
 Windows 21H2
