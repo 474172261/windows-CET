@@ -162,3 +162,32 @@ C:\windows\WinSxS\amd64_windows-defender-service_31bf3856ad364e35_10.0.22000.1_n
 C:\windows\WinSxS\amd64_windows-defender-service_31bf3856ad364e35_10.0.22000.1_none_1be9c0745b95a762\MsMpEng.exe
 C:\windows\WinSxS\wow64_microsoft-windows-s..llercommandlinetool_31bf3856ad364e35_10.0.22000.1_none_d50683110dd687fb\sc.exe
 ```
+
+Other program
+```
+C:\Program Files\Google\Chrome\Application\chrome.exe
+C:\Program Files\Google\Chrome\Application\new_chrome.exe
+C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe
+C:\Program Files (x86)\Microsoft\Edge\Application\pwahelper.exe
+C:\Program Files (x86)\Microsoft\Edge\Application\101.0.1210.47\cookie_exporter.exe
+C:\Program Files (x86)\Microsoft\Edge\Application\101.0.1210.47\identity_helper.exe
+C:\Program Files (x86)\Microsoft\Edge\Application\101.0.1210.47\msedge.exe
+C:\Program Files (x86)\Microsoft\Edge\Application\101.0.1210.47\msedgewebview2.exe
+C:\Program Files (x86)\Microsoft\Edge\Application\101.0.1210.47\pwahelper.exe
+C:\Program Files (x86)\Microsoft\Edge\Application\101.0.1210.47\BHO\ie_to_edge_stub.exe
+C:\Program Files (x86)\Microsoft\EdgeCore\101.0.1210.47\cookie_exporter.exe
+C:\Program Files (x86)\Microsoft\EdgeCore\101.0.1210.47\identity_helper.exe
+C:\Program Files (x86)\Microsoft\EdgeCore\101.0.1210.47\msedge.exe
+C:\Program Files (x86)\Microsoft\EdgeCore\101.0.1210.47\msedgewebview2.exe
+C:\Program Files (x86)\Microsoft\EdgeCore\101.0.1210.47\pwahelper.exe
+C:\Program Files (x86)\Microsoft\EdgeCore\101.0.1210.47\BHO\ie_to_edge_stub.exe
+C:\Program Files (x86)\Microsoft\EdgeUpdate\1.3.161.35\MicrosoftEdgeUpdate.exe
+C:\Program Files (x86)\Microsoft\EdgeUpdate\1.3.161.35\MicrosoftEdgeUpdateBroker.exe
+C:\Program Files (x86)\Microsoft\EdgeUpdate\1.3.161.35\MicrosoftEdgeUpdateComRegisterShell64.exe
+C:\Program Files (x86)\Microsoft\EdgeUpdate\1.3.161.35\MicrosoftEdgeUpdateCore.exe
+C:\Program Files (x86)\Microsoft\EdgeUpdate\1.3.161.35\MicrosoftEdgeUpdateOnDemand.exe
+C:\Program Files (x86)\Microsoft\EdgeUpdate\1.3.161.35\MicrosoftEdgeUpdateSetup.exe
+C:\Program Files (x86)\Microsoft\EdgeUpdate\Download\{F3C4FE00-EFD5-403B-9569-398A20F1BA4A}\1.3.161.35\MicrosoftEdgeUpdateSetup_X86_1.3.161.35.exe
+C:\Program Files (x86)\Microsoft Office\root\VFS\ProgramFilesCommonX64\Microsoft Shared\OFFICE16\ai.exe
+C:\Program Files (x86)\Microsoft Office\root\VFS\ProgramFilesCommonX86\Microsoft Shared\OFFICE16\ai.exe
+```
