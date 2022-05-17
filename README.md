@@ -38,13 +38,13 @@ int main(void) {
 We will get an exception error if it enabled [/CETCOMPAT](https://docs.microsoft.com/en-us/cpp/build/reference/cetcompat?view=msvc-170)
 ```
 $ test.exe
-00007FF7EBC01208
+00007FF7E4E83AFE
 hello1
 ```
 if Host don't support CET:
 ```
 $ test.exe
-00007FF6976D1203
+00007FF7E4E83AFE
 hello1
 hello2
 ```
