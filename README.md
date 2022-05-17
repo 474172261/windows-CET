@@ -41,13 +41,14 @@ $ test.exe
 00007FF7E4E83AFE
 hello1
 ```
-if Host don't support CET:
+if Host doesn't support CET:
 ```
 $ test.exe
 00007FF7E4E83AFE
 hello1
 hello2
 ```
+> CET is supported starting from Intel 11th CPU.
 
 We can enable it in VS2019 by:
 `Configuration Properties` > `Linker` > `Additional Options`, select `CET shadow stack compatible`
