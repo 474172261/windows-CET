@@ -28,6 +28,15 @@ We will get an exception error if it enabled [/CETCOMPAT](https://docs.microsoft
 We can enable it in VS2019 by:
 `Configuration Properties` > `Linker` > `Additional Options`, select `CET shadow stack compatible`
 
+# Check if enabled CET
+We can use `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\bin\Hostx64\x64\dumpbin.exe` to check if a program enabled CET:
+```bash
+$ .\dumpbin.exe  /headers "C:\Windows\System32\conhost.exe"|findstr CET
+                   CET compatible
+$
+```
+
+
 # Weakness
 1. it doesn't check if we return from `test` to `main` at position after called `test3`. This means CET won't check return stack out-of-order.
 2. if exe doesn't enable CETCOMPAT, though it loads dll enabled CET, running process don't have CET whether `ret` in program or dll. This is different from ASLR or DEP.
