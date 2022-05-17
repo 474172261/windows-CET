@@ -1,19 +1,31 @@
 # windows CET
 windows CET is a protect mechanism to avoid ROP exploit skill.
 For example:
+test.asm
+```asm
+.code
+
+rop proc
+mov [rsp], rcx
+ret
+rop endp
+
+end
+```
+main.c
 ```c
+void rop(void*);
+void test2(void) {
+	printf("hello2\n");
+}
 void test(void) {
 	printf("hello1\n");
+	rop(test2);
 }
 
 void test3(void){
   test();
 }
-
-void test2(void) {
-	printf("hello2\n");
-}
-
 
 int main(void) {
 	printf("%p\n", test2);
@@ -22,8 +34,20 @@ int main(void) {
 	return 0;
 }
 ```
-if we set rsp return pointer to function `test2` before execute `ret` instruction inside `test` function.
+
 We will get an exception error if it enabled [/CETCOMPAT](https://docs.microsoft.com/en-us/cpp/build/reference/cetcompat?view=msvc-170)
+```
+$ test.exe
+00007FF7EBC01208
+hello1
+```
+if Host don't support CET:
+```
+$ test.exe
+00007FF6976D1203
+hello1
+hello2
+```
 
 We can enable it in VS2019 by:
 `Configuration Properties` > `Linker` > `Additional Options`, select `CET shadow stack compatible`
@@ -40,6 +64,7 @@ $
 # Weakness
 1. it doesn't check if we return from `test` to `main` at position after called `test3`. This means CET won't check return stack out-of-order.
 2. if exe doesn't enable CETCOMPAT, though it loads dll enabled CET, running process don't have CET whether `ret` in program or dll. This is different from ASLR or DEP.
+3. For VMware Workstation, it doesn't support CET in VM.
 
 # Enabled CET list in windows:
 Windows 21H2
