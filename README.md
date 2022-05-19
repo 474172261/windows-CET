@@ -87,9 +87,12 @@ We can force CET for a range virtual address of target process by [SetProcessDyn
 we can force a program enabling CET in Windows Defender:
 <br/>
 ![image](https://user-images.githubusercontent.com/13879204/169259851-1a8c9c5d-6504-4b06-b34a-d5a2c426877d.png)
+<br/>
 ![image](https://user-images.githubusercontent.com/13879204/169260024-53b4302e-138b-4622-89ba-67cdf6771e14.png)
-after choose a file. Enable CET:
+<br/>
+after choose a file. Enable CET:<br/>
 ![image](https://user-images.githubusercontent.com/13879204/169261032-d20f1d45-1d03-41a5-b7ac-c3d0573fd7f7.png)
+<br/>
 ![image](https://user-images.githubusercontent.com/13879204/169261121-12c3fa98-a1f5-43d6-bdd0-4bb116c8b692.png)
 
 
