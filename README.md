@@ -57,11 +57,12 @@ We can enable it in VS2019 by:
 
 # Check CETCOMPAT
 We can use `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\bin\Hostx64\x64\dumpbin.exe` to check if a program enabled CET:
-```bash
+```
 $ .\dumpbin.exe  /headers "C:\Windows\System32\conhost.exe"|findstr CET
                    CET compatible
 $
 ```
+<br/>
 <br/>
 We can check CET for a running process in `Task Manager`, by select `Hardware-enforced Stack Protection` in `Details` list.
 <br/>
@@ -95,7 +96,9 @@ after choose a file. Enable CET:<br/>
 ![image](https://user-images.githubusercontent.com/13879204/169261032-d20f1d45-1d03-41a5-b7ac-c3d0573fd7f7.png)
 <br/>
 ![image](https://user-images.githubusercontent.com/13879204/169261121-12c3fa98-a1f5-43d6-bdd0-4bb116c8b692.png)
+<br/>
 It acctually set `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options`:
+<br/>
 ![image](https://user-images.githubusercontent.com/13879204/169256984-9506c685-a4dc-4e55-b930-9b96dce7cb24.png)
 
 # Extra Reading
