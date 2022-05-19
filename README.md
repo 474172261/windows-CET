@@ -96,7 +96,7 @@ after choose a file. Enable CET:<br/>
 <br/>
 ![image](https://user-images.githubusercontent.com/13879204/169261121-12c3fa98-a1f5-43d6-bdd0-4bb116c8b692.png)
 It acctually set `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options`:
-![](https://user-images.githubusercontent.com/13879204/169256984-9506c685-a4dc-4e55-b930-9b96dce7cb24.png)
+![image](https://user-images.githubusercontent.com/13879204/169256984-9506c685-a4dc-4e55-b930-9b96dce7cb24.png)
 
 # Extra Reading
 [Enabling Hardware-enforced Stack Protection (cetcompat) in Chrome](https://security.googleblog.com/2021/05/enabling-hardware-enforced-stack.html)<br/>
