@@ -63,10 +63,12 @@ $ .\dumpbin.exe  /headers "C:\Windows\System32\conhost.exe"|findstr CET
 $
 ```
 We can check CET for a running process in `Task Manager`, by select `Hardware-enforced Stack Protection` in `Details` list.
-![](https://github.com/474172261/windows-CET/select-column.png)
-In following picture, I test it in VMware Workstation, so no process enabled CET.
-![](https://github.com/474172261/windows-CET/cet.png)
+![select-column](https://user-images.githubusercontent.com/13879204/169243559-1dac2ce2-cbd8-4331-b688-1b26ca9a9d8a.png)
 
+In following picture, I test it in VMware Workstation, so no process enabled CET.
+![cet](https://user-images.githubusercontent.com/13879204/169243595-a4bbca5e-84cb-4eac-bd99-f5b25c457e06.png)
+
+You can also try use [process hacker] and active `CET` column in `process list`.
 
 # Weakness
 1. it doesn't check if we return from `test` to `main` at position after called `test3`. This means CET won't check return stack out-of-order.
@@ -77,12 +79,12 @@ In following picture, I test it in VMware Workstation, so no process enabled CET
 Chrome.exe enabled CETCOMPAT, however, not all chrome process enabled CET.
 
 # Extra Reading
-[Enabling Hardware-enforced Stack Protection (cetcompat) in Chrome](https://security.googleblog.com/2021/05/enabling-hardware-enforced-stack.html)
-[CET Updates – Dynamic Address Ranges](https://windows-internals.com/cet-updates-dynamic-address-ranges/)
-[Windows 21H1 CET Improvements](https://windows-internals.com/cet-updates-cet-on-xanax/)
-[Intel ISA](https://techcommunity.microsoft.com/t5/windows-kernel-internals-blog/developer-guidance-for-hardware-enforced-stack-protection/ba-p/2163340) (Chapter 18)
-[R.I.P ROP: CET Internals in Windows 20H1](https://windows-internals.com/cet-on-windows/)
-[Developer Guidance for Hardware-enforced Stack Protection](https://techcommunity.microsoft.com/t5/windows-kernel-internals-blog/developer-guidance-for-hardware-enforced-stack-protection/ba-p/2163340)
+[Enabling Hardware-enforced Stack Protection (cetcompat) in Chrome](https://security.googleblog.com/2021/05/enabling-hardware-enforced-stack.html)<br/>
+[CET Updates – Dynamic Address Ranges](https://windows-internals.com/cet-updates-dynamic-address-ranges/)<br/>
+[Windows 21H1 CET Improvements](https://windows-internals.com/cet-updates-cet-on-xanax/)<br/>
+[Intel ISA](https://techcommunity.microsoft.com/t5/windows-kernel-internals-blog/developer-guidance-for-hardware-enforced-stack-protection/ba-p/2163340) (Chapter 18)<br/>
+[R.I.P ROP: CET Internals in Windows 20H1](https://windows-internals.com/cet-on-windows/)<br/>
+[Developer Guidance for Hardware-enforced Stack Protection](https://techcommunity.microsoft.com/t5/windows-kernel-internals-blog/developer-guidance-for-hardware-enforced-stack-protection/ba-p/2163340)<br/>
 
 # Enabled CET list in windows:
 Windows 21H2
