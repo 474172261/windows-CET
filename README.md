@@ -55,19 +55,23 @@ hello2
 We can enable it in VS2019 by:
 `Configuration Properties` > `Linker` > `Additional Options`, select `CET shadow stack compatible`
 
-# Check if program enabled CETCOMPAT
+# Check CETCOMPAT
 We can use `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\bin\Hostx64\x64\dumpbin.exe` to check if a program enabled CET:
 ```bash
 $ .\dumpbin.exe  /headers "C:\Windows\System32\conhost.exe"|findstr CET
                    CET compatible
 $
 ```
+<br/>
 We can check CET for a running process in `Task Manager`, by select `Hardware-enforced Stack Protection` in `Details` list.
+<br/>
 ![select-column](https://user-images.githubusercontent.com/13879204/169243559-1dac2ce2-cbd8-4331-b688-1b26ca9a9d8a.png)
-
+<br/>
+<br/>
 In following picture, I test it in VMware Workstation, so no process enabled CET.
 ![cet](https://user-images.githubusercontent.com/13879204/169243595-a4bbca5e-84cb-4eac-bd99-f5b25c457e06.png)
-
+<br/>
+<br/>
 You can also try to use [process hacker](https://github.com/processhacker/processhacker) and active `CET` column in `process list`.
 ![image](https://user-images.githubusercontent.com/13879204/169244951-dd907417-782f-47eb-826c-fb1d8199b902.png)
 
@@ -77,7 +81,9 @@ You can also try to use [process hacker](https://github.com/processhacker/proces
 3. For VMware Workstation, it doesn't support CET in VM even CPU supports.
 
 # Other Info
-Chrome.exe enabled CETCOMPAT, however, not all chrome process enabled CET.
+Chrome.exe enabled CETCOMPAT, however, not all chrome process enabled CET.<br/>
+We can force CET for a range virtual address of target process by [SetProcessDynamicEnforcedCetCompatibleRanges](https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-setprocessdynamicenforcedcetcompatibleranges). <br/>
+<br/>
 
 # Extra Reading
 [Enabling Hardware-enforced Stack Protection (cetcompat) in Chrome](https://security.googleblog.com/2021/05/enabling-hardware-enforced-stack.html)<br/>
