@@ -74,6 +74,8 @@ In following picture, I test it in VMware Workstation, so no process enabled CET
 <br/>
 You can also try to use [process hacker](https://github.com/processhacker/processhacker) and active `CET` column in `process list`.
 ![image](https://user-images.githubusercontent.com/13879204/169244951-dd907417-782f-47eb-826c-fb1d8199b902.png)
+It acctually set `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options`:
+![](https://user-images.githubusercontent.com/13879204/169256984-9506c685-a4dc-4e55-b930-9b96dce7cb24.png)
 
 # Weakness
 1. it doesn't check if we return from `test` to `main` at position after called `test3`. This means CET won't check return stack out-of-order.
