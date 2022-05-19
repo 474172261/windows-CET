@@ -1,6 +1,8 @@
 # windows CET
-windows CET is a protect mechanism to avoid ROP exploit skill.
-For example:
+windows CET is a protect mechanism to avoid ROP exploit skill.<br/>
+**CET is supported starting from Intel 11th CPU(Tiger lake), It's a hardware feature!**<br/>
+
+For example:<br/>
 test.asm
 ```asm
 .code
@@ -48,7 +50,7 @@ $ test.exe
 hello1
 hello2
 ```
-> CET is supported starting from Intel 11th CPU.
+
 
 We can enable it in VS2019 by:
 `Configuration Properties` > `Linker` > `Additional Options`, select `CET shadow stack compatible`
@@ -60,7 +62,6 @@ $ .\dumpbin.exe  /headers "C:\Windows\System32\conhost.exe"|findstr CET
                    CET compatible
 $
 ```
-
 
 # Weakness
 1. it doesn't check if we return from `test` to `main` at position after called `test3`. This means CET won't check return stack out-of-order.
