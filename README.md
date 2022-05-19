@@ -55,18 +55,34 @@ hello2
 We can enable it in VS2019 by:
 `Configuration Properties` > `Linker` > `Additional Options`, select `CET shadow stack compatible`
 
-# Check if enabled CET
+# Check if program enabled CETCOMPAT
 We can use `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\bin\Hostx64\x64\dumpbin.exe` to check if a program enabled CET:
 ```bash
 $ .\dumpbin.exe  /headers "C:\Windows\System32\conhost.exe"|findstr CET
                    CET compatible
 $
 ```
+We can check CET for a running process in `Task Manager`, by select `Hardware-enforced Stack Protection` in `Details` list.
+![](https://github.com/474172261/windows-CET/select-column.png)
+In following picture, I test it in VMware Workstation, so no process enabled CET.
+![](https://github.com/474172261/windows-CET/cet.png)
+
 
 # Weakness
 1. it doesn't check if we return from `test` to `main` at position after called `test3`. This means CET won't check return stack out-of-order.
 2. if exe doesn't enable CETCOMPAT, though it loads dll enabled CET, running process don't have CET whether `ret` in program or dll. This is different from ASLR or DEP.
-3. For VMware Workstation, it doesn't support CET in VM.
+3. For VMware Workstation, it doesn't support CET in VM even CPU supports.
+
+# Other Info
+Chrome.exe enabled CETCOMPAT, however, not all chrome process enabled CET.
+
+# Extra Reading
+[Enabling Hardware-enforced Stack Protection (cetcompat) in Chrome](https://security.googleblog.com/2021/05/enabling-hardware-enforced-stack.html)
+[CET Updates – Dynamic Address Ranges](https://windows-internals.com/cet-updates-dynamic-address-ranges/)
+[Windows 21H1 CET Improvements](https://windows-internals.com/cet-updates-cet-on-xanax/)
+[Intel ISA](https://techcommunity.microsoft.com/t5/windows-kernel-internals-blog/developer-guidance-for-hardware-enforced-stack-protection/ba-p/2163340) (Chapter 18)
+[R.I.P ROP: CET Internals in Windows 20H1](https://windows-internals.com/cet-on-windows/)
+[Developer Guidance for Hardware-enforced Stack Protection](https://techcommunity.microsoft.com/t5/windows-kernel-internals-blog/developer-guidance-for-hardware-enforced-stack-protection/ba-p/2163340)
 
 # Enabled CET list in windows:
 Windows 21H2
