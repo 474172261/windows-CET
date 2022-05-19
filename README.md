@@ -68,7 +68,8 @@ We can check CET for a running process in `Task Manager`, by select `Hardware-en
 In following picture, I test it in VMware Workstation, so no process enabled CET.
 ![cet](https://user-images.githubusercontent.com/13879204/169243595-a4bbca5e-84cb-4eac-bd99-f5b25c457e06.png)
 
-You can also try use [process hacker] and active `CET` column in `process list`.
+You can also try to use [process hacker](https://github.com/processhacker/processhacker) and active `CET` column in `process list`.
+![image](https://user-images.githubusercontent.com/13879204/169244951-dd907417-782f-47eb-826c-fb1d8199b902.png)
 
 # Weakness
 1. it doesn't check if we return from `test` to `main` at position after called `test3`. This means CET won't check return stack out-of-order.
