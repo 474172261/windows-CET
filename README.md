@@ -70,7 +70,7 @@ We can check CET for a running process in `Task Manager`, by select `Hardware-en
 <br/>
 <br/>
 In following picture, I test it in VMware Workstation, so no process enabled CET.
-![cet](https://user-images.githubusercontent.com/13879204/169243595-a4bbca5e-84cb-4eac-bd99-f5b25c457e06.png)
+![image](https://user-images.githubusercontent.com/13879204/169243595-a4bbca5e-84cb-4eac-bd99-f5b25c457e06.png)
 <br/>
 <br/>
 You can also try to use [process hacker](https://github.com/processhacker/processhacker) and active `CET` column in `process list`.
