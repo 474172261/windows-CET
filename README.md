@@ -107,6 +107,85 @@ It acctually set `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersio
 <br/>
 ![image](https://user-images.githubusercontent.com/13879204/169256984-9506c685-a4dc-4e55-b930-9b96dce7cb24.png)
 
+# Enforce CET for a process in C
+Based on UpdateProcThreadAttribute(https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-updateprocthreadattribute)
+
+```c
+#include <windows.h>
+#include <stdio.h>
+
+int main(void) {
+    DWORD64 ProtectionLevel[2] = { 0 };
+    DWORD64* flag2 = &ProtectionLevel[1];
+    *flag2 = PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_ALWAYS_ON;
+    SIZE_T AttributeListSize;
+    DWORD Result;
+
+    STARTUPINFOEXW StartupInfoEx = { 0 };
+    StartupInfoEx.StartupInfo.cb = sizeof(StartupInfoEx);
+    DWORD64 mask[2] = { 0 };
+    Result = GetProcessMitigationPolicy(GetCurrentProcess(), ProcessMitigationOptionsMask, mask, sizeof(mask));
+    if (!Result) {
+        Result = GetLastError();
+        goto exitFunc;
+    }
+    ProtectionLevel[0] &= mask[0];
+    ProtectionLevel[1] &= mask[1];
+    printf("ProtectionLevel: %llx %llx\n", ProtectionLevel[0], ProtectionLevel[1]);
+    InitializeProcThreadAttributeList(NULL, 1, 0, &AttributeListSize);
+
+    StartupInfoEx.lpAttributeList = (LPPROC_THREAD_ATTRIBUTE_LIST)HeapAlloc(
+            GetProcessHeap(),
+            0,
+            AttributeListSize
+        );
+
+    if (InitializeProcThreadAttributeList(StartupInfoEx.lpAttributeList,
+        1,
+        0,
+        &AttributeListSize) == FALSE)
+    {
+        Result = GetLastError();
+        goto exitFunc;
+    }
+
+    if (UpdateProcThreadAttribute(StartupInfoEx.lpAttributeList,
+        0,
+        PROC_THREAD_ATTRIBUTE_MITIGATION_POLICY,
+        &ProtectionLevel,
+        sizeof(ProtectionLevel),
+        NULL,
+        NULL) == FALSE)
+    {
+        Result = GetLastError();
+        goto exitFunc;
+    }
+
+    PROCESS_INFORMATION ProcessInformation = { 0 };
+
+    if (CreateProcessW(L"C:\\Windows\\System32\\cmd.exe",
+        NULL,
+        NULL,
+        NULL,
+        FALSE,
+        EXTENDED_STARTUPINFO_PRESENT,
+        NULL,
+        NULL,
+        (LPSTARTUPINFOW)&StartupInfoEx,
+        &ProcessInformation) == FALSE)
+    {
+        Result = GetLastError();
+        goto exitFunc;
+    }
+exitFunc:
+    printf("Error is:%d", Result);
+    getch();
+	return 0;
+}
+```
+
+reference [chromium sandbox process_mitigations.cc](https://chromium.googlesource.com/chromium/src/sandbox/+/refs/heads/main/win/src/process_mitigations.cc)
+
 # Extra Reading
 [Enabling Hardware-enforced Stack Protection (cetcompat) in Chrome](https://security.googleblog.com/2021/05/enabling-hardware-enforced-stack.html)<br/>
 [CET Updates – Dynamic Address Ranges](https://windows-internals.com/cet-updates-dynamic-address-ranges/)<br/>
