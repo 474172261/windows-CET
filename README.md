@@ -75,7 +75,7 @@ We can check CET for a running process in `Task Manager`, by select `Hardware-en
 <br/>
 
 In following picture, I test it in VMware Workstation, so no process enabled CET.
-
+> VMware Workstation don't support CET emulation
 ![image](https://user-images.githubusercontent.com/13879204/169243595-a4bbca5e-84cb-4eac-bd99-f5b25c457e06.png)
 <br/>
 <br/>
@@ -218,8 +218,7 @@ And here `cmd` process is enabling CET:<br/>
 <br/>
 Windows Defender acctually sets `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options` for that program:
 <br/>
-![image](https://user-images.githubusercontent.com/13879204/169256984-9506c685-a4dc-4e55-b930-9b96dce7cb24.png)
-
+![image](https://user-images.githubusercontent.com/13879204/169438321-0ff14cea-d8b9-4d2e-924d-e3ac9d5b2119.png)
 
 # Extra Reading
 [Enabling Hardware-enforced Stack Protection (cetcompat) in Chrome](https://security.googleblog.com/2021/05/enabling-hardware-enforced-stack.html)<br/>
