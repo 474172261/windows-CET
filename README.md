@@ -98,7 +98,7 @@ we can force a program enabling CET in Windows Defender:
 <br/>
 ![image](https://user-images.githubusercontent.com/13879204/169260024-53b4302e-138b-4622-89ba-67cdf6771e14.png)
 <br/>
-after choose a file. Enable CET:<br/>
+after choose a file, here I select `cmd.exe` to enable CET:<br/>
 ![image](https://user-images.githubusercontent.com/13879204/169261032-d20f1d45-1d03-41a5-b7ac-c3d0573fd7f7.png)
 <br/>
 ![image](https://user-images.githubusercontent.com/13879204/169261121-12c3fa98-a1f5-43d6-bdd0-4bb116c8b692.png)
@@ -108,8 +108,31 @@ It acctually set `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersio
 ![image](https://user-images.githubusercontent.com/13879204/169256984-9506c685-a4dc-4e55-b930-9b96dce7cb24.png)
 
 # Enforce CET for a process in C
-Based on UpdateProcThreadAttribute(https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-updateprocthreadattribute)
+Based on UpdateProcThreadAttribute(https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-updateprocthreadattribute) <br/>
 
+The following mitigation options are available for user-mode Hardware-enforced Stack Protection and related features:
+
+```
+#define PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_ALWAYS_ON (0x00000001ui64 << 28)
+#define PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_ALWAYS_OFF (0x00000002ui64 << 28)
+#define PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_STRICT_MODE (0x00000003ui64 << 28)
+```
+
+Instruction Pointer validation:
+```
+#define PROCESS_CREATION_MITIGATION_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_ALWAYS_ON (0x00000001ui64 << 32)
+#define PROCESS_CREATION_MITIGATION_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_ALWAYS_OFF (0x00000002ui64 << 32)
+#define PROCESS_CREATION_MITIGATION_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_RELAXED_MODE (0x00000003ui64 << 32)
+```
+
+Blocking the load of non-CETCOMPAT/non-EHCONT binaries:
+```
+#define PROCESS_CREATION_MITIGATION_POLICY2_BLOCK_NON_CET_BINARIES_ALWAYS_ON (0x00000001ui64 << 36)
+#define PROCESS_CREATION_MITIGATION_POLICY2_BLOCK_NON_CET_BINARIES_ALWAYS_OFF (0x00000002ui64 << 36)
+#define PROCESS_CREATION_MITIGATION_POLICY2_BLOCK_NON_CET_BINARIES_NON_EHCONT (0x00000003ui64 << 36)
+```
+
+Example:
 ```c
 #include <windows.h>
 #include <stdio.h>
@@ -184,7 +207,11 @@ exitFunc:
 }
 ```
 
-reference [chromium sandbox process_mitigations.cc](https://chromium.googlesource.com/chromium/src/sandbox/+/refs/heads/main/win/src/process_mitigations.cc)
+> if you want to create a child process without CET even it compiled with CETCOMPAT, set `PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_ALWAYS_OFF`.
+
+
+Reference: <br/>
+[chromium sandbox process_mitigations.cc](https://chromium.googlesource.com/chromium/src/sandbox/+/refs/heads/main/win/src/process_mitigations.cc)
 
 # Extra Reading
 [Enabling Hardware-enforced Stack Protection (cetcompat) in Chrome](https://security.googleblog.com/2021/05/enabling-hardware-enforced-stack.html)<br/>
