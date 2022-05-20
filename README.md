@@ -265,3 +265,7 @@ C:\Program Files (x86)\Microsoft\EdgeUpdate\Download\{F3C4FE00-EFD5-403B-9569-39
 C:\Program Files (x86)\Microsoft Office\root\VFS\ProgramFilesCommonX64\Microsoft Shared\OFFICE16\ai.exe
 C:\Program Files (x86)\Microsoft Office\root\VFS\ProgramFilesCommonX86\Microsoft Shared\OFFICE16\ai.exe
 ```
+
+Processes in windows 21H2:
+
+![image](https://user-images.githubusercontent.com/13879204/169432139-af9f44fb-f58f-4f2b-8b9d-b0d3c17ff460.png)
