@@ -132,7 +132,7 @@ Blocking the load of non-CETCOMPAT/non-EHCONT binaries:
 #define PROCESS_CREATION_MITIGATION_POLICY2_BLOCK_NON_CET_BINARIES_NON_EHCONT (0x00000003ui64 << 36)
 ```
 
-Example:
+Example, here I create a child process with CET enabled:
 ```c
 #include <windows.h>
 #include <stdio.h>
@@ -207,7 +207,10 @@ exitFunc:
 }
 ```
 
-> if you want to create a child process without CET even it compiled with CETCOMPAT, set `PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_ALWAYS_OFF`.
+![image](https://user-images.githubusercontent.com/13879204/169436918-f961f3aa-d26f-45b6-8eff-3018d63fcaa1.png)
+
+
+> if you want to create a child process without CET even it compiled with CETCOMPAT, set `PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_ALWAYS_OFF` flag.
 
 
 Reference: <br/>
