@@ -81,6 +81,7 @@ In following picture, I test it in VMware Workstation, so no process enabled CET
 <br/>
 
 You can also try to use [process hacker](https://github.com/processhacker/processhacker) and active `CET` column in `process list`.
+> `process hacker` now changes name to [System Informer](https://github.com/winsiderss/systeminformer/)
 
 ![image](https://user-images.githubusercontent.com/13879204/169244951-dd907417-782f-47eb-826c-fb1d8199b902.png)
 
